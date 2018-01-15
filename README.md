@@ -5,3 +5,4 @@
 ## [element-ui源码分析](https://github.com/Viajes324/blog/labels/element-ui%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90)
 
 1. [**loading组件**（svg动画、自定义指令、Vue.extend应用）](https://github.com/Viajes324/blog/issues/1)
+2. [popper.js工具库](https://github.com/Viajes324/blog/issues/2)
