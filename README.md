@@ -9,4 +9,4 @@
 
 
 ## [React](https://github.com/Viajes324/blog/labels/React)
-1.[**React入门**](https://github.com/Viajes324/blog/issues/3)
+1. [**React入门**](https://github.com/Viajes324/blog/issues/3)
