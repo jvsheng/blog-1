@@ -6,7 +6,7 @@
 
 1. [**loading组件**（svg动画、自定义指令、Vue.extend应用）](https://github.com/Viajes324/blog/issues/1)
 2. [**popper.js工具库**](https://github.com/Viajes324/blog/issues/2)
-3. [**Tag组件**（$emit通信）](https://viajes324.github.io/element-imitate/#/zh-CN/component/tag)
+3. [**tag组件**（$emit通信，多个元素的过渡动画）](https://viajes324.github.io/element-imitate/#/zh-CN/component/tag)
 
 
 ## [React](https://github.com/Viajes324/blog/labels/React)
