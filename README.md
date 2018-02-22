@@ -11,5 +11,5 @@
 ## [工作笔记](https://github.com/Viajes324/blog/tree/master/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0)
 1. [angularjs自定义指令，compile用法]
 
-## [React](https://github.com/Viajes324/blog/labels/React)
+## [React](https://github.com/Viajes324/blog/tree/master/React)
 1. [**React入门**](https://github.com/Viajes324/blog/issues/3)
