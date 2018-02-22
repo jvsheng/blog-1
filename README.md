@@ -8,6 +8,8 @@
 2. [**popper.js工具库**](https://github.com/Viajes324/blog/issues/2)
 3. [**tag组件**（$emit通信，多个元素的过渡动画）](https://viajes324.github.io/element-imitate/#/zh-CN/component/tag)
 
+## 工作笔记
+1. [angularjs自定义指令，compile用法]
 
 ## [React](https://github.com/Viajes324/blog/labels/React)
 1. [**React入门**](https://github.com/Viajes324/blog/issues/3)
