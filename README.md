@@ -15,4 +15,4 @@
 2. [**JavaScript模块化的几种方式**](https://github.com/Viajes324/blog/blob/master/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/JavaScript%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F.md)
 
 ## [React](https://github.com/Viajes324/blog/tree/master/React)
-1. [**React入门**](https://github.com/Viajes324/blog/issues/3)
+1. [**React入门**](https://github.com/Viajes324/blog/blob/master/React/React%E5%85%A5%E9%97%A8.md)
