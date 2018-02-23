@@ -103,25 +103,25 @@ React官方文档中坚持在构造函数中绑定类方法。
 ![image](https://user-images.githubusercontent.com/35365161/35479912-fec2d0ec-043d-11e8-9473-6691635d298b.png)
 
 **13.生命周期**  
-挂载过程中的四个生命周期方法
+挂载过程中的四个生命周期方法  
 ![image](https://user-images.githubusercontent.com/35365161/35499753-afcb1568-050e-11e8-8f34-9daa653df4fa.png)
 
-组件的状态或者属性改变的时候的生命周期
+组件的状态或者属性改变的时候的生命周期  
 ![image](https://user-images.githubusercontent.com/35365161/35499756-b612d2bc-050e-11e8-96e7-0914ab042342.png)
 
 **14.扩展操作符**  
 React用户不可变的数据，不应该改变一个对象。更好的做法是基于现在拥有的资源来创建一个新的对象。这样就没有任何对象被改变。这样做的好处是数据结构将保持不变，因为总是返回一个新的对象，而之前的对象保持不变。
-Object.assign( )
+Object.assign( )  
 ![image](https://user-images.githubusercontent.com/35365161/35500123-56d6518c-0510-11e8-9b4a-9b97c8880abf.png)
 
-扩展操作符-数组
+扩展操作符-数组  
 ![image](https://user-images.githubusercontent.com/35365161/35500149-768040c4-0510-11e8-8406-ea36a8e97fbb.png)
 
-扩展操作符-对象
+扩展操作符-对象  
 ![image](https://user-images.githubusercontent.com/35365161/35500192-926af752-0510-11e8-9144-68ae2a714a64.png)
 
 **15.条件渲染**  
-if-else、三目运算、&&
+if-else、三目运算、&&  
 ![image](https://user-images.githubusercontent.com/35365161/35500380-42f611e2-0511-11e8-9180-2b693b8d2079.png)
 
 
