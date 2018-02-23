@@ -12,7 +12,7 @@
 
 ## [工作笔记](https://github.com/Viajes324/blog/tree/master/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0)
 1. [**angularjs自定义指令，compile用法**](https://github.com/Viajes324/blog/blob/master/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/angularjs%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4%EF%BC%8Ccompile%E7%94%A8%E6%B3%95.md)
-2. [**JS模块化的几种方式**](https://github.com/Viajes324/blog/blob/master/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/JavaScript%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F.md)
+2. [**JavaScript模块化的几种方式**](https://github.com/Viajes324/blog/blob/master/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/JavaScript%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F.md)
 
 ## [React](https://github.com/Viajes324/blog/tree/master/React)
 1. [**React入门**](https://github.com/Viajes324/blog/issues/3)
