@@ -5,11 +5,12 @@
 ## [Element-ui源码分析](https://github.com/Viajes324/blog/tree/master/Element-ui%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90)
 
 1. [**loading组件**（svg动画、自定义指令、Vue.extend应用）](https://github.com/Viajes324/blog/issues/1)
-2. [**popper.js工具库**](https://github.com/Viajes324/blog/issues/2)
+2. [**badge组件**]
 3. [**tag组件**（$emit通信，多个元素的过渡动画）](https://viajes324.github.io/element-imitate/#/zh-CN/component/tag)
 
 ## [工作笔记](https://github.com/Viajes324/blog/tree/master/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0)
-1. [angularjs自定义指令，compile用法](https://github.com/Viajes324/blog/blob/master/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/angularjs%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4%EF%BC%8Ccompile%E7%94%A8%E6%B3%95.md)
+1. [**angularjs自定义指令，compile用法**](https://github.com/Viajes324/blog/blob/master/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/angularjs%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4%EF%BC%8Ccompile%E7%94%A8%E6%B3%95.md)
+2. [**JS模块化的几种方式**]
 
 ## [React](https://github.com/Viajes324/blog/tree/master/React)
 1. [**React入门**](https://github.com/Viajes324/blog/issues/3)
