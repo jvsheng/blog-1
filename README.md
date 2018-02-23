@@ -4,13 +4,15 @@
 
 ## [Element-ui源码分析](https://github.com/Viajes324/blog/tree/master/Element-ui%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90)
 
-1. [**loading组件**（svg动画、自定义指令、Vue.extend应用）](https://github.com/Viajes324/blog/issues/1)
-2. [**badge组件**]
-3. [**tag组件**（$emit通信，多个元素的过渡动画）](https://viajes324.github.io/element-imitate/#/zh-CN/component/tag)
+1. [**Collapse组件**](https://github.com/Viajes324/blog/blob/master/Element-ui%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Collapse%E7%BB%84%E4%BB%B6.md)
+2. [**Tag组件**](https://github.com/Viajes324/blog/blob/master/Element-ui%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Tag%E7%BB%84%E4%BB%B6.md)
+3. [**Badge组件**](https://github.com/Viajes324/blog/blob/master/Element-ui%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Badge%E7%BB%84%E4%BB%B6.md)
+4. [**Progress组件**](https://github.com/Viajes324/blog/blob/master/Element-ui%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Progress%E7%BB%84%E4%BB%B6.md)
+5. [**Loading组件**](https://github.com/Viajes324/blog/blob/master/Element-ui%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Loading%E7%BB%84%E4%BB%B6.md)
 
 ## [工作笔记](https://github.com/Viajes324/blog/tree/master/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0)
 1. [**angularjs自定义指令，compile用法**](https://github.com/Viajes324/blog/blob/master/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/angularjs%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4%EF%BC%8Ccompile%E7%94%A8%E6%B3%95.md)
-2. [**JS模块化的几种方式**]
+2. [**JS模块化的几种方式**](https://github.com/Viajes324/blog/blob/master/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/JavaScript%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F.md)
 
 ## [React](https://github.com/Viajes324/blog/tree/master/React)
 1. [**React入门**](https://github.com/Viajes324/blog/issues/3)
