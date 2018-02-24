@@ -4,7 +4,7 @@
 
 ## [Element-ui源码分析](https://github.com/Viajes324/blog/tree/master/Element-ui%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90)
 
-1. [**Collapse组件**](https://github.com/Viajes324/blog/blob/master/Element-ui%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Collapse%E7%BB%84%E4%BB%B6.md)<code>Vue过渡状态的应用</code>
+1. [**Collapse组件** <code>Vue过渡状态的应用</code>](https://github.com/Viajes324/blog/blob/master/Element-ui%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Collapse%E7%BB%84%E4%BB%B6.md)
 2. [**Tag组件** <code>vertical-align如何解决垂直居中</code>](https://github.com/Viajes324/blog/blob/master/Element-ui%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Tag%E7%BB%84%E4%BB%B6.md)
 3. [**Badge组件** <code>computed使用</code>](https://github.com/Viajes324/blog/blob/master/Element-ui%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Badge%E7%BB%84%E4%BB%B6.md)
 4. [**Progress组件** <code>svg画圆，css实现svg动画</code>](https://github.com/Viajes324/blog/blob/master/Element-ui%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Progress%E7%BB%84%E4%BB%B6.md)
