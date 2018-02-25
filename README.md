@@ -17,4 +17,4 @@
 1. [**React入门**](https://github.com/Viajes324/blog/blob/master/React/React%E5%85%A5%E9%97%A8.md)
 
 ## [webpack](https://github.com/Viajes324/blog/tree/master/Webpack)
-1. [**webpack入门**](https://github.com/Viajes324/blog/blob/master/Webpack/webpack%E5%85%A5%E9%97%A8.md)
+1. [**webpack入门**](https://github.com/Viajes324/blog/blob/master/webpack/webpack%E5%85%A5%E9%97%A8.md)
