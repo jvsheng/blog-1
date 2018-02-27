@@ -13,3 +13,32 @@
 - 单独使用时，如何去判断它所处的状态（是否包裹了子元素）?  
 - 可以显示为数目，也可以显示为圆点。那么，怎么去实现这个效果？v-if v-else?
 - 最大数目时，针对全局，怎么写的优雅一点，不通过v-if小于99时，显示number，v-else显示99+?
+
+### step-1，先写一个能在按钮右上角正常显示消息数的demo
+```javascript
+<template>
+  <div class="el-badge">
+    <slot></slot>
+    <sup
+      class="el-badge__content"
+      :class="{'is-fixed': $slots.default}"
+    >
+      {{ value }}
+    </sup>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'ElBadge',
+  props: {
+    value: [Number, String]
+  }
+};
+</script>
+
+```
+
+### step-2
+
+### step-3
