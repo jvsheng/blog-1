@@ -1,7 +1,7 @@
 ## Badge组件
 **Badge组件**主要用于数字或状态的标记，对于消息类的提醒功能，使用这组件还是很常见的。具体显示效果如下图：
 
-![clipboard.png](/img/bV6BUj)
+![clipboard.png](https://segmentfault.com/img/bV6BUj)
 
 不管组件复杂还是简单，编码实现这个组件的都不是源码分析目的。
 源码分析，在于通过一步步的实现这个功能，在这个过程中，看自己能学到什么，发现哪些问题。
@@ -88,7 +88,7 @@ let ElBadge = {
 
 看下Vue关于内容分发的文档：https://cn.vuejs.org/v2/api/#vm-slots
 
-![clipboard.png](/img/bV6Cdt)
+![clipboard.png](https://segmentfault.com/img/bV6Cdt)
 
 好，这样通过<code>$slots.default</code>可以解决这个问题了，那么模板上怎么体现这个区别呢？v-if新增单独使用的情况？和上一点类似，我们需要保证html模板的简洁，所以通过css类名来做区别，当单独使用的时候，就不想对于左上角进行定位了。
 
