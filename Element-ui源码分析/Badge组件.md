@@ -15,14 +15,14 @@
 
 仔细看，标记相对于父元素，badge的显示区域定位时只有左上角的一小部分和父元素重叠。通过下面的css可以实现这个功能。
 
-```
+```html
 <div class="al-badge">
   <slot></slot>
   <span class="al-badge--content">{{value}}</span>
 </div>
 ```
 
-```
+```css
 .al-badge {
   display: inline-block;
   position: relative;
@@ -53,7 +53,7 @@
 
 一开始，对于这个需求，我的实现思路是这样的:
 
-```
+```html
 <div class="al-badge">
   <slot></slot>
   <span class="al-badge--content" v-if="value <= max">{{value}}</span>
@@ -65,7 +65,7 @@
 
 ok，我们来重新梳理一下上面这段html，两个v-if的模板，只是针对于不同条件下，内容显示不同而已。所以，可不可以**增加一个computed属性**，在js这一层进行简化？看下面这一段简化后的：
 
-```
+```javascript
 let ElBadge = {
   name: 'ElBadge',
   //.....
@@ -92,7 +92,7 @@ let ElBadge = {
 
 好，这样通过<code>$slots.default</code>可以解决这个问题了，那么模板上怎么体现这个区别呢？v-if新增单独使用的情况？和上一点类似，我们需要保证html模板的简洁，所以通过css类名来做区别，当单独使用的时候，就不想对于左上角进行定位了。
 
-```
+```html
 <div class="al-badge">
   <slot></slot>
   <span v-show="!hidden" 
@@ -106,7 +106,7 @@ let ElBadge = {
 </div>
 ```
 
-```
+```css
 .al-badge--content {
   //.....
   &.is-fixed {
