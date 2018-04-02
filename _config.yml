@@ -17,7 +17,7 @@ email: 1130521172@qq.com
 description: ""
 keyword: # seo key words
 
-favicon: /images/favicon.jpg # your favicon png
+favicon: "/blog/images/favicon.jpg" # your favicon png
 # custom end
 
 # URL
@@ -60,7 +60,7 @@ ga_domain:
 
 # Sidebar settings
 sidebar: true
-sidebar-about-description: # 个人描述
+sidebar-about-description: "上班下班等周末..." # 个人描述
 sidebar-avatar: "/blog/images/favicon.jpg"    # use absolute URL
 
 

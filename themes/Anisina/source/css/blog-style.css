@@ -11,7 +11,7 @@ hr{
 }
 
 .sidebar-container {
-    color: #bfbfbf;
+    color: #666;
     font-size: 14px;
     margin-top: 35px;
 }
@@ -21,7 +21,7 @@ hr{
 }
 
 .sidebar-container h5 a {
-    color: #808080 !important;
+    color: #333 !important;
     text-decoration: none;
 }
 
@@ -522,11 +522,11 @@ a:focus {
 
 @media only screen and (min-width: 768px) {
     .post-preview > a > .post-title {
-        font-size: 26px;
+        font-size: 21px;
         line-height: 1.3;
     }
     .post-preview .post-meta {
-        font-size: 16px;
+        font-size: 14px;
     }
 }
 
@@ -883,11 +883,11 @@ img::-moz-selection {
     .one-tag-list .post-preview .post-meta {
         font-size: 18px;
     }
-	
+
 	.one-archive-list .post-preview {
 		margin-left: 40px;
 	}
-	
+
 	.archive-month {
 		margin-left: 20px;
 	}
