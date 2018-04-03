@@ -253,10 +253,8 @@ layout: layout
             <section>
                 <div class="tags">
                     <% site.tags.map(function(tag){ %>
-                    <% if(tag.length > config['featured-condition-size']) { %>
                     <a href="<%= config.root %>tags/#<%= tag.name %>" title="<%= tag.name %>"
                        rel="<%= tag.length %>"><%= tag.name %></a>
-                    <% } %>
                     <% }) %>
                 </div>
             </section>

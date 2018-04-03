@@ -100,7 +100,7 @@ highlight:
 # Category & Tag
 default_category: uncategorized
 category_map:
-tag_map:
+tag_map: [Vue.js, 组件化]
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
