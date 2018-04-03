@@ -155,6 +155,9 @@
                     </span>
                     <div class="tags text-center">
                         
+                        <a class="tag" href="/blog/tags/#Element源码分析"
+                           title="Element源码分析">Element源码分析</a>
+                        
                     </div>
                 </div>
             </div>
@@ -173,7 +176,49 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                
+                <p><strong>Badge组件</strong>主要用于数字或状态的标记，对于消息类的提醒功能，使用这组件还是很常见的。具体显示效果如下图：</p>
+<p><img src="/blog/images/1.png" alt="实现效果"></p>
+<p>不管组件复杂还是简单，编码实现这个组件的都不是源码分析目的。<br>源码分析，在于通过一步步的实现这个功能，在这个过程中，看自己能学到什么，发现哪些问题。<br>然后通过这些问题，去扩展知识点，最终完成 <code> 实践 - 思考 - 扩展 </code> 这三步。</p>
+<h2 id="1-实现基本功能，按钮右上角显示消息"><a href="#1-实现基本功能，按钮右上角显示消息" class="headerlink" title="1.实现基本功能，按钮右上角显示消息"></a>1.实现基本功能，按钮右上角显示消息</h2><iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/huang_jusheng/v37dsk1s/107/embedded/result/light" frameborder="0" allowfullscreen></iframe>
+<p>第一步的实现很简单，具体的可以看示例代码，主要点在于css的思路。</p>
+<p>仔细看，标记相对于父元素，badge的显示区域定位时只有左上角的一小部分和父元素重叠。通过下面的css可以实现这个功能。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"al-badge"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">slot</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"al-badge--content"</span>&gt;</span>&#123;&#123;value&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.al-badge</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.al-badge--content</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translateX</span>(100%) <span class="built_in">translateY</span>(-50%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>开始的时候，我还想着怎么通过right + margin属性实现。但是看源码发现这种实现方式，感觉也是很简洁。<strong>那么问题就来了，对于css的百分比单位，哪些属性可以设置呢？设置后他们的百分比又是相对于哪个元素？</strong></p>
+<p>发现一篇写的很好的总结，可以看一下：<a href="http://acgtofe.com/posts/2014/06/percentage-in-css" target="_blank" rel="noopener">详述css中的百分比值</a><br><strong>总结一下：</strong></p>
+<ol>
+<li><code>widht &amp; heiht</code>属性，百分比值相对于<code>包含块的宽高</code></li>
+<li><code>margin &amp; padding</code>属性，百分比值相对于<code>包含块的宽度</code></li>
+<li><code>font-size</code>属性，百分比值相对于<code>直接父元素的font-size</code></li>
+<li><code>line-height</code>属性，百分比值相对于自身元素的<code>font-size</code></li>
+<li><code>vertical-align</code>属性，百分比值相对于自身元素的<code>line-height</code></li>
+<li><code>top/left/right/bottom</code>属性，百分比值相对于<code>包含块宽高</code></li>
+<li><code>translate</code>中，百分比值相对于<code>自身元素border-box盒模型的宽高</code></li>
+</ol>
+<h2 id="2-实现最大值判断，超过最大值max时，显示内容为max"><a href="#2-实现最大值判断，超过最大值max时，显示内容为max" class="headerlink" title="2.实现最大值判断，超过最大值max时，显示内容为max+"></a>2.实现最大值判断，超过最大值max时，显示内容为max+</h2><iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/huang_jusheng/v37dsk1s/123/embedded/result/light" frameborder="0" allowfullscreen></iframe>
+<p>一开始，对于这个需求，我的实现思路是这样的:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"al-badge"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">slot</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"al-badge--content"</span> <span class="attr">v-if</span>=<span class="string">"value &lt;= max"</span>&gt;</span>&#123;&#123;value&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"al-badge--content"</span> <span class="attr">v-if</span>=<span class="string">"value &gt; max"</span>&gt;</span>&#123;&#123;max+&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这算是自己在初期经常容易犯的一个问题吧。<strong>滥用v-if v-else</strong>。<br>一个好的组件，实现起来，模板一眼看过去，就应该是很简洁的。过多的v-if只会越读越糟心，后期维护以及增加新的需求时，也容易各种踩坑。</p>
+<p>ok，我们来重新梳理一下上面这段html，两个v-if的模板，只是针对于不同条件下，内容显示不同而已。所以，可不可以<strong>增加一个computed属性</strong>，在js这一层进行简化？看下面这一段简化后的：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> ElBadge = &#123;</span><br><span class="line">  name: <span class="string">'ElBadge'</span>,</span><br><span class="line">  <span class="comment">//.....</span></span><br><span class="line">  computed: &#123;</span><br><span class="line">  	content: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  	    <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="keyword">this</span>.value === <span class="string">'number'</span> &amp;&amp; <span class="keyword">typeof</span> <span class="keyword">this</span>.max === <span class="string">'number'</span>) &#123;</span><br><span class="line">  	        <span class="keyword">return</span> <span class="keyword">this</span>.value &gt; <span class="keyword">this</span>.max ? <span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.max&#125;</span>+`</span> : <span class="keyword">this</span>.value;</span><br><span class="line">  	    &#125;</span><br><span class="line">  	    <span class="keyword">return</span> <span class="keyword">this</span>.value;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="3-增加展现形式，可以显示为小圆点或单独使用"><a href="#3-增加展现形式，可以显示为小圆点或单独使用" class="headerlink" title="3.增加展现形式，可以显示为小圆点或单独使用"></a>3.增加展现形式，可以显示为小圆点或单独使用</h2><iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/v37dsk1s/embedded/result/light" frameborder="0" allowfullscreen></iframe>
+<p>对于这个功能，首先需要解决的是，<strong>怎么判断组件是单独使用，还是包裹了一个子元素</strong>？</p>
+<p>看下Vue关于内容分发的文档：<a href="https://cn.vuejs.org/v2/api/#vm-slots" target="_blank" rel="noopener">https://cn.vuejs.org/v2/api/#vm-slots</a></p>
+<p><img src="/blog/images/2.png" alt="vue文档"></p>
+<p>好，这样通过<code>$slots.default</code>可以解决这个问题了，那么模板上怎么体现这个区别呢？v-if新增单独使用的情况？和上一点类似，我们需要保证html模板的简洁，所以通过css类名来做区别，当单独使用的时候，就不想对于左上角进行定位了。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"al-badge"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">slot</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-show</span>=<span class="string">"!hidden"</span> </span></span><br><span class="line"><span class="tag">        <span class="attr">class</span>=<span class="string">"al-badge--content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">:class</span>=<span class="string">"[</span></span></span><br><span class="line"><span class="tag"><span class="string">            isDot &amp;&amp; 'is-dot', </span></span></span><br><span class="line"><span class="tag"><span class="string">            $slots.default &amp;&amp; 'is-fixed'</span></span></span><br><span class="line"><span class="tag"><span class="string">        ]"</span>&gt;</span></span><br><span class="line">       &#123;&#123;content&#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.al-badge--content</span> &#123;</span><br><span class="line">  //.....</span><br><span class="line">  &amp;<span class="selector-class">.is-fixed</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateX</span>(100%) <span class="built_in">translateY</span>(-50%);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &amp;<span class="selector-class">.is-dot</span> &#123;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">5px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">8px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">8px</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过<strong>Badge组件</strong></p>
+<ul>
+<li>学到了模板代码的正确组织方式，如何通过computed，css类名等来简化模板的编写，使其更加清晰可读。</li>
+<li>以及$slots.default API的使用</li>
+<li>扩展了对于css百分比值的认识。</li>
+</ul>
+<p>参考文献：</p>
+<ol>
+<li><a href="http://acgtofe.com/posts/2014/06/percentage-in-css" target="_blank" rel="noopener">详述css中的百分比值</a></li>
+</ol>
+
                 <hr>
                 
 
@@ -198,7 +243,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-实现基本功能，按钮右上角显示消息"><span class="toc-text">1.实现基本功能，按钮右上角显示消息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-实现最大值判断，超过最大值max时，显示内容为max"><span class="toc-text">2.实现最大值判断，超过最大值max时，显示内容为max+</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-增加展现形式，可以显示为小圆点或单独使用"><span class="toc-text">3.增加展现形式，可以显示为小圆点或单独使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
                 </div>
             </div>
         </div>
@@ -219,6 +264,9 @@
                         <a href="/blog/tags/">FEATURED TAGS</a>
                     </h5>
                     <div class="tags">
+                        
+                        <a class="tag" href="/blog/tags/#Element源码分析"
+                           title="Element源码分析">Element源码分析</a>
                         
                     </div>
                 </section>

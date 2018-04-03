@@ -10,6 +10,11 @@ hr{
     margin:0;
 }
 
+li {
+    font-size: 14px;
+    margin: .3em 0;
+}
+
 .sidebar-container {
     color: #666;
     font-size: 14px;
@@ -62,14 +67,14 @@ hr{
 
 body {
     line-height: 1.7;
-    font-size: 16px;
-    color: #404040;
+    font-size: 15px;
+    color: #333;
     overflow-x: hidden;
-    font-family: "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+    font-family: -apple-system,"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","WenQuanYi Micro Hei","Microsoft Yahei",sans-serif;
 }
 
 p {
-    margin:0 0 20px;
+    margin: 1.5em 0;
 }
 
 h1,
@@ -86,7 +91,13 @@ h4{font-size: 18px}
 h5{font-size: 16px}
 h6{font-size: 15px}
 article .post-container h2{
-    font-weight: 600;
+    font-weight: 500;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin: 1.5em 0 0;
+}
+.post-container strong {
+    font-weight: bold !important;
 }
 a {
     color: #404040;
@@ -173,8 +184,8 @@ article .post-container h3,
 article .post-container h4,
 article .post-container h5,
 article .post-container h6 {
-    margin-top:-90px;
-    padding: 100px 0 0;
+    /*margin-top:-90px;*/
+    /*padding: 100px 0 0;*/
 }
 
 article blockquote footer{
@@ -898,7 +909,13 @@ img::-moz-selection {
     display: block;
     max-width: 100%;
     height: auto;
-    margin: 1.5em auto 1.6em auto;
+    margin: 1.5em 0 1.6em 0;
+    padding: 3px;
+    border: 1px solid #ddd;
+}
+
+iframe {
+    border: 1px solid #ccc;
 }
 
 /* Hux Optimize UserExperience */
