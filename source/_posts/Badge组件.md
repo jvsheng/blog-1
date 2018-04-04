@@ -1,6 +1,6 @@
 ---
 title: Badge组件
-date: 2018-04-02 22:17:34
+date: 2018-03-23 22:17:34
 tags: [Element源码分析]
 ---
 **Badge组件**主要用于数字或状态的标记，对于消息类的提醒功能，使用这组件还是很常见的。具体显示效果如下图：
@@ -74,11 +74,11 @@ let ElBadge = {
   name: 'ElBadge',
   //.....
   computed: {
-  	content: function() {
-  	    if(typeof this.value === 'number' && typeof this.max === 'number') {
-  	        return this.value > this.max ? `${this.max}+` : this.value;
-  	    }
-  	    return this.value;
+    content: function () {
+      if (typeof this.value === 'number' && typeof this.max === 'number') {
+        return this.value > this.max ? `${this.max}+` : this.value;
+      }
+      return this.value;
     }
   }
 };

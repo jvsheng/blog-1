@@ -33,10 +33,11 @@ layout: layout
         margin-top: 0;
         padding-left: 60px;
         padding-right: 60px;
+        font-size: 22px;
     }
 
     .custom-haojen-container .post-preview:nth-child(1) .post-meta {
-        font-size: .9em;
+        font-size: .75em;
         font-weight: 300;
         margin-top: 0;
     }
@@ -252,9 +253,13 @@ layout: layout
             <% if(config['featured-tags']) { %>
             <section>
                 <div class="tags">
-                    <% site.tags.map(function(tag){ %>
+                    <% site.tags.map(function(tag, i){ %>
                     <a href="<%= config.root %>tags/#<%= tag.name %>" title="<%= tag.name %>"
-                       rel="<%= tag.length %>"><%= tag.name %></a>
+                       rel="<%= tag.length %>"
+                       style="color:<%= ['#03A9F4','#FF9800', '#4CAF50', '#FF5722', '#795548','#00BCD4',  '#9C27B0', '#FF5252','#CDDC39', '#536DFE', '#E91E63'][i%10] %>!important;
+                               border-color:<%= ['#03A9F4','#FF9800', '#4CAF50', '#FF5722', '#795548','#00BCD4',  '#9C27B0', '#FF5252','#CDDC39', '#536DFE', '#E91E63'][i%10] %>!important;">
+                        <%= tag.name %>
+                    </a>
                     <% }) %>
                 </div>
             </section>
