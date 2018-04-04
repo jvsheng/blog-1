@@ -458,6 +458,7 @@ article blockquote cite:before{
     padding-left: 1em;
 }
 
+
 @media only screen and (min-width: 768px) {
     .intro-header .post-heading h1,
     .intro-header .post-heading .subheading{
