@@ -542,6 +542,7 @@ a:focus {
 
 .post-content-preview p {
     color: #555;
+    margin: .3em 0 1em;
 }
 
 .section-heading {
