@@ -917,10 +917,6 @@ img::-moz-selection {
     border: 1px solid #ddd;
 }
 
-iframe {
-    border: 1px solid #ccc;
-}
-
 /* Hux Optimize UserExperience */
 .navbar-default .navbar-toggle:focus,
 .navbar-default .navbar-toggle:hover {
@@ -1236,6 +1232,7 @@ iframe {
 }
 .container iframe {
     margin-top: 15px;
+    border: 1px solid #eee;
 }
 .container a {
     color: #009a61;
