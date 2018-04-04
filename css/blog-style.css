@@ -26,12 +26,12 @@ li {
 }
 
 .sidebar-container h5 a {
-    color: #333 !important;
+    color: #409EFF !important;
     text-decoration: none;
 }
 
 .sidebar-container a {
-    color: #666 !important;
+    color: #409EFF !important;
 }
 
 .sidebar-container a:hover,
@@ -496,7 +496,7 @@ a:focus {
 }
 .post-preview > a > h2{transition: color .3s;}
 .post-preview:not(:first-of-type) > a:hover > h2{
-    color: #FC7097;
+    color: #409EFF;
 }
 
 .post-preview > a > .post-title {
@@ -1119,7 +1119,7 @@ img::-moz-selection {
 
 .navbar-custom.is-fixed .brand-logo {
     border-radius: 3px;
-    background: black;
+    background: #409EFF;
     color: white;
     padding-bottom: 3px;
     padding-left: 5px;
@@ -1129,7 +1129,7 @@ img::-moz-selection {
 
 .navbar-custom.is-fixed .navbar-brand,
 .navbar-custom.is-fixed .navbar-right a {
-    color: black;
+    color: #409EFF;
 }
 
 .navbar-custom.is-fixed .navbar-toggle span {
