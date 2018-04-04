@@ -54,7 +54,7 @@ li {
     display: block;
     border-radius: 50%;
     margin-bottom: 20px;
-    box-shadow: 0 0 2px black;
+    box-shadow: 0 0 2px #409EFF;
 }
 
 .sidebar-container .short-about p {
