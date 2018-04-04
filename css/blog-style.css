@@ -1227,14 +1227,14 @@ img::-moz-selection {
     width:0;
 }
 
-.container p:first-child {
+article p:first-child {
     margin-top: 0;
 }
-.container iframe {
+article iframe {
     margin-top: 15px;
     border: 1px solid #eee;
 }
-.container a {
+article a {
     color: #009a61;
     text-decoration: none;
     border-bottom: 1px solid rgba(0,154,97,0.25);
