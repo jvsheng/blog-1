@@ -1130,7 +1130,7 @@ img::-moz-selection {
 
 .navbar-custom.is-fixed .navbar-brand,
 .navbar-custom.is-fixed .navbar-right a {
-    color: #409EFF;
+    color: #409EFF !important;
 }
 
 .navbar-custom.is-fixed .navbar-toggle span {
