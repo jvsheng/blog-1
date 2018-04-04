@@ -178,17 +178,17 @@
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
                 <p><strong>Tag组件</strong>通常用来显示当前操作的多项内容，在我司系统中，选择多个不同站点下栏目的时候，就需要这种展示效果。但是并没有做到组件化，每次写相同的需求的时候都多了很多冗余的代码。</p>
 <p><img src="/blog/images/3.png" alt="实现效果"></p>
-<h2 id="最终实现的效果"><a href="#最终实现的效果" class="headerlink" title="最终实现的效果"></a>最终实现的效果</h2><p><a href="https://jsfiddle.net/huang_jusheng/3mbas124/" target="_blank" rel="noopener">https://jsfiddle.net/huang_jusheng/3mbas124/</a></p>
+<h2 id="最终实现的效果"><a href="#最终实现的效果" class="headerlink" title="最终实现的效果"></a>最终实现的效果</h2><iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/huang_jusheng/3mbas124/embedded/result/light" frameborder="0" allowfullscreen></iframe>
 <h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><p>####<strong>对组件间的通信的理解</strong></p>
 <p>首先，先看一下Vue关于自定义事件的文档说明：<a href="https://cn.vuejs.org/v2/guide/components.html#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6" target="_blank" rel="noopener">自定义事件</a><br>这里，我们着重关注下这两句：</p>
 <p><img src="/blog/images/4.png" alt="$emit,$on文档"></p>
 <p>为什么说，$on监听事件，但是不能用$on侦听子组件释放的事件呢？<br>我们看API文档中，对于$on, $emit的说明：</p>
-<p><img src="/blog/images/5.png" alt="多个元素过渡文档"></p>
+<p><img src="/blog/images/5.png" alt="$emit,$on文档"></p>
 <p><strong>vm.$emit</strong>, <strong>以及触发的是当前实例上的事件！！！</strong>。</p>
 <p>所以，当我们在子组件中调用this.$emit的时候，被触发的事件也只能在子组件的实例中被监听到。如果这时候我们在父组件的实例中去监听this.$on(eventname)，这样是肯定监听不到这个事件的。</p>
 <p>而对于在模板中直接使用 <code>@on:eventname = &#39;xxx&#39;</code>，应该可以理解成是一种语法糖吧。不然要在父组件中去监听这个事件，就需要使用事件总线了吧。</p>
 <p>####<strong>Vue过渡效果中，key属性的应用</strong></p>
-<p><img src="/img/bV63BJ" alt="clipboard.png"></p>
+<p><img src="/blog/images/6.png" alt="多个元素过渡文档"></p>
 <p>可以在示例的代码中，删除模板中的key属性，看下这时删除操作的过渡效果。会发现每次都是把第一个元素给删除了，而不是当前点击的元素。解决办法就是上面这个key属性。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Tag组件实现起来并不难，可以当作熟悉Vue的一个练手demo。<br>通过Tag组件</p>
 <ul>
