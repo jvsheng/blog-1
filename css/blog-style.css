@@ -1229,4 +1229,6 @@ iframe {
     width:0;
 }
 
-
+.container p:first-child {
+    margin-top: 0;
+}
