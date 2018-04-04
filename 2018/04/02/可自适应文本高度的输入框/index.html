@@ -155,6 +155,9 @@
                     </span>
                     <div class="tags text-center">
                         
+                        <a class="tag" href="/blog/tags/#Element源码分析"
+                           title="Element源码分析">Element源码分析</a>
+                        
                     </div>
                 </div>
             </div>
@@ -173,7 +176,30 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                
+                <p><strong>可适应文本高度的输入框组件</strong>其实一开始是Ant design里面就有的，Element-ui也实现了，但是通过看源码，其实用的都是一个相似的js…</p>
+<p>我们需要实现的这个组件，可以指定最小行数(<code>minRows</code>)和最大行数(<code>maxRows</code>)，用来限定textarea的高度变化范围。</p>
+<h2 id="最终实现的效果"><a href="#最终实现的效果" class="headerlink" title="最终实现的效果"></a>最终实现的效果</h2><p><a href="https://jsfiddle.net/huang_jusheng/b6L3xo4e/" target="_blank" rel="noopener">可自适应文本高度的输入框</a><br><iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/huang_jusheng/b6L3xo4e/embedded/result/light" frameborder="0" allowfullscreen></iframe></p>
+<p>说一下具体的实现思路吧</p>
+<ol>
+<li>在body中添加一个不可见的元素，样式尽可能的和组件输入框的一样。当输入框的值发生变化时，通过这个不可见的元素，去模拟计算这时候组件输入框文本所占高度height。</li>
+<li>通过计算出单行高度，获得<code>minRows * singleRowHeight</code> 与 <code>maxRows *singleRowHeight</code>，这样就有了一个最大、最小高度范围。</li>
+<li>最后，通过这三个值：<code>height, minHeight, maxHeight</code>.做一下范围判断，就可以获得组件输入框的实时高度了。</li>
+</ol>
+<p>具体代码逻辑：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 不可见的节点，用来模拟输入框，计算当前输入值所占的高度</span><br><span class="line">let hiddenTextarea;</span><br><span class="line"></span><br><span class="line">// 隐藏不可见节点，所使用的样式</span><br><span class="line">let HIDDEN_STYLE = `</span><br><span class="line">	// ...</span><br><span class="line">`;</span><br><span class="line"></span><br><span class="line">// 模拟输入框，需要考虑模拟哪些样式</span><br><span class="line">let NODE_STYLE = [</span><br><span class="line">	// ...</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">// 计算输入框的样式，padding, border, box-sizing, 以及模拟样式的值</span><br><span class="line">function calcNodeStyle(targetElement) &#123;</span><br><span class="line">	var styles = window.getComputedStyle(targetElement);</span><br><span class="line">	// ...</span><br><span class="line">	return &#123;nodeStyle,paddingSize,borderSize,boxSizing&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function calcTextareaHeight(targetElement, minRows=1, maxRows=null) &#123;</span><br><span class="line">	// ...</span><br><span class="line">    // 增加不可见节点，模拟组件输入框的样式</span><br><span class="line">	hiddenTextarea.setAttribute(&apos;style&apos;, `$&#123;nodeStyle&#125;;$&#123;HIDDEN_STYLE&#125;`);</span><br><span class="line">	</span><br><span class="line">    // 计算出单行文本的高度</span><br><span class="line">	hiddenTextarea.value = &apos;&apos;;</span><br><span class="line">	let singleRowHeight = hiddenTextarea.scrollHeight - paddingSize;</span><br><span class="line"></span><br><span class="line">    // 计算当前输入值所占高度</span><br><span class="line">	hiddenTextarea.value = targetElement.value || targetElement.placeHolder;</span><br><span class="line">	let height = hiddenTextarea.scrollHeight;</span><br><span class="line">	// ...</span><br><span class="line">	let result = &#123;&#125;;</span><br><span class="line">	if(minRows) &#123;</span><br><span class="line">		// 根据单行文本高度，计算最小高度值</span><br><span class="line">	&#125;</span><br><span class="line">	if(maxRows) &#123;</span><br><span class="line">		// 根据单行文本高度，计算最大高度值</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	result.height = `$&#123;height&#125;px`;</span><br><span class="line">	hiddenTextarea.parentNode &amp;&amp; hiddenTextarea.parentNode.removeChild(hiddenTextarea);</span><br><span class="line">	hiddenTextarea = null;</span><br><span class="line">	return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="scrollHeight"><a href="#scrollHeight" class="headerlink" title="scrollHeight"></a>scrollHeight</h2><p>看一下MDN中对于scrollHeight的定义：<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Element/scrollHeight" target="_blank" rel="noopener">Element.scrollHeight</a></p>
+<p>从下图中，我们可以很直观的看出，<code>scrollHeight = 内容区域高度（content-height） + paddingSize</code>。不包括border以及margin的值。</p>
+<p><img src="/blog/images/7.png" alt="多个元素过渡文档"></p>
+<p>在这个组件中，我们需要去模拟当前输入框的样式，去计算当前输入值会占多少的高度，就需要用到这个属性。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let HIDDEN_STYLE = `</span><br><span class="line">	height:0 !important;</span><br><span class="line">	overflow:hidden !important;</span><br><span class="line">	position: fixed !important;</span><br><span class="line">	top: -9999px !important;</span><br><span class="line">	left: -9999px !important;</span><br><span class="line">	opacity: 0 !important;</span><br><span class="line">`;</span><br><span class="line"></span><br><span class="line">function calcTextareaHeight(targetElement, minRows=1, maxRows=null) &#123;</span><br><span class="line">	// ...</span><br><span class="line">	hiddenTextarea.value = &apos;&apos;;</span><br><span class="line">	let singleRowHeight = hiddenTextarea.scrollHeight - paddingSize;</span><br><span class="line"></span><br><span class="line">	hiddenTextarea.value = targetElement.value || targetElement.placeHolder;</span><br><span class="line">	let height = hiddenTextarea.scrollHeight;</span><br><span class="line">	</span><br><span class="line">	if(boxSizing === &apos;border-box&apos;) &#123;</span><br><span class="line">		height = height + borderSize;</span><br><span class="line">	&#125; else if(boxSizing === &apos;content-box&apos;) &#123;</span><br><span class="line">		height = height - paddingSize;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意<code>HIDDEN_STYLE中，height: 0;</code>这个非常重要。因为不这么做的话，你取到的scrollHeight的值是组件输入框的高度，而不是他输入值文本所占的高度。</p>
+<p>还有一点需要提下，仔细看<code>HIDDEN_STYLE</code>的属性，我们都是通过visible, top, right, opacity来隐藏这个节点，而没有使用display:none; <strong>因为，设置dispaly：none后，就没有这个节点了, scrollHeight是获取不到值的！！！</strong></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>只要明白了实现的思路，其实后面就好写了。关键点还是在于对于box-sizing，以及模拟样式的健壮性考虑。</p>
+<p>通过这个组件：</p>
+<ul>
+<li>加深了对于scrollHeight的使用</li>
+<li>对于代码健壮性的理解，需要考虑多种情况（box-sizing）</li>
+</ul>
+
                 <hr>
                 
 
@@ -203,7 +229,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#最终实现的效果"><span class="toc-text">最终实现的效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#scrollHeight"><span class="toc-text">scrollHeight</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
                 </div>
             </div>
         </div>
@@ -224,6 +250,9 @@
                         <a href="/blog/tags/">FEATURED TAGS</a>
                     </h5>
                     <div class="tags">
+                        
+                        <a class="tag" href="/blog/tags/#Element源码分析"
+                           title="Element源码分析">Element源码分析</a>
                         
                     </div>
                 </section>
