@@ -567,7 +567,7 @@ a:focus {
 
 footer {
     font-size: 20px;
-    padding: 50px 0 65px;
+    padding: 20px 0 35px
 }
 
 footer .list-inline {
@@ -582,12 +582,12 @@ footer .copyright {
 }
 
 footer .copyright a {
-    color: #337ab7;
+    color: #409EFF;
 }
 
 footer .copyright a:hover,
 footer .copyright a:focus {
-    color: #0085a1;
+    color: #409EFF;
 }
 
 .floating-label-form-group {
