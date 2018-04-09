@@ -1,5 +1,5 @@
 ---
-title: 自定义组件间通信
+title: Collapse组件-自定义组件间通信
 date: 2018-04-02 15:15:00
 tags: [Element源码分析]
 ---

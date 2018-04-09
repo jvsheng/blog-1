@@ -1238,7 +1238,7 @@ article iframe {
 }
 article a {
     color: #009a61;
-    text-decoration: none;
+    text-decoration: none !important;
     border-bottom: 1px solid rgba(0,154,97,0.25);
     padding-bottom: 1px;
 }
