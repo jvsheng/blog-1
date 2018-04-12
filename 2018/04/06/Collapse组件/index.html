@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        Tag组件｜Viajes&#39;s blog
+        Collapse组件｜Viajes&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="http://viajes7.github.io/blog/blog/2018/03/28/Tag组件/">
+    <link rel="canonical" href="http://viajes7.github.io/blog/blog/2018/04/06/Collapse组件/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/blog/css/bootstrap.min.css">
@@ -145,12 +145,12 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>Tag组件</h1>
+                    <h1>Collapse组件</h1>
                     
                     <span class="meta">
                          作者 huang.jusheng
                         <span>
-                          日期 2018-03-28
+                          日期 2018-04-06
                          </span>
                     </span>
                     <div class="tags text-center">
@@ -165,7 +165,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            Tag组件
+            Collapse组件
         </span>
     </div>
 </header>
@@ -176,22 +176,19 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <p><strong>Tag组件</strong>通常用来显示当前操作的多项内容，在我司系统中，选择多个不同站点下栏目的时候，就需要这种展示效果。但是并没有做到组件化，每次写相同的需求的时候都多了很多冗余的代码。</p>
-<p><img src="/blog/images/3.png" alt="实现效果"></p>
-<h2 id="最终实现的效果"><a href="#最终实现的效果" class="headerlink" title="最终实现的效果"></a>最终实现的效果</h2><iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/huang_jusheng/3mbas124/embedded/result/light" frameborder="0" allowfullscreen></iframe>
-<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><h4 id="对组件间的通信的理解"><a href="#对组件间的通信的理解" class="headerlink" title="对组件间的通信的理解"></a><strong>对组件间的通信的理解</strong></h4><p>首先，先看一下Vue关于自定义事件的文档说明：<a href="https://cn.vuejs.org/v2/guide/components.html#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6" target="_blank" rel="noopener">自定义事件</a><br>这里，我们着重关注下这两句：</p>
-<p><img src="/blog/images/4.png" alt="$emit,$on文档"></p>
-<p>为什么说，$on监听事件，但是不能用$on侦听子组件释放的事件呢？<br>我们看API文档中，对于$on, $emit的说明：</p>
-<p><img src="/blog/images/5.png" alt="$emit,$on文档"></p>
-<p><strong>vm.$emit</strong>, <strong>以及触发的是当前实例上的事件！！！</strong>。</p>
-<p>所以，当我们在子组件中调用this.$emit的时候，被触发的事件也只能在子组件的实例中被监听到。如果这时候我们在父组件的实例中去监听this.$on(eventname)，这样是肯定监听不到这个事件的。</p>
-<p>而对于在模板中直接使用 <code>@on:eventname = &#39;xxx&#39;</code>，应该可以理解成是一种语法糖吧。不然要在父组件中去监听这个事件，就需要使用事件总线了吧。</p>
-<h4 id="Vue过渡效果中，key属性的应用"><a href="#Vue过渡效果中，key属性的应用" class="headerlink" title="Vue过渡效果中，key属性的应用"></a><strong>Vue过渡效果中，key属性的应用</strong></h4><p><img src="/blog/images/6.png" alt="多个元素过渡文档"></p>
-<p>可以在示例的代码中，删除模板中的key属性，看下这时删除操作的过渡效果。会发现每次都是把第一个元素给删除了，而不是当前点击的元素。解决办法就是上面这个key属性。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Tag组件实现起来并不难，可以当作熟悉Vue的一个练手demo。<br>通过Tag组件</p>
+                <p><strong>Collapse组件</strong>的关键点在于，实现的时候不能写的太死，要给内容区域预留一定的定制化能力。</p>
+<h2 id="最终实现效果"><a href="#最终实现效果" class="headerlink" title="最终实现效果"></a>最终实现效果</h2><p><a href="https://viajes7.github.io/element-imitate/#/zh-CN/component/collapse">https://viajes7.github.io/element-imitate/#/zh-CN/component/collapse</a></p>
+<h2 id="provide-inject"><a href="#provide-inject" class="headerlink" title="provide / inject"></a>provide / inject</h2><p>查看Element的实现细节，为了使组件的高度可定制化，分离了Collapse组件和Collapse-item组件。</p>
+<p>Collapse组件用来管理当前展开哪个子组件，activeNames。这就涉及了一个问题，activeNames在父组件上，<br>那子组件怎么才能知道自己当前是不是应该处于展开状态了呢？</p>
+<p>点击展开子组件的时候，子组件会发消息给父组件说，哎，我要展开内容区域了，你记录一下，然后父组件就记录下了。<br>这时候，通过props给每个子组件都传递这个activeNames么？</p>
+<p>还有一个更简单的实现方式，<code>provide / inject</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Collapse</span></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"el-collapse"</span> role=<span class="string">"tablist"</span> aria-multiselectable=<span class="string">"true"</span>&gt;</span><br><span class="line">    &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    name: <span class="string">'ElCollapse'</span>,</span><br><span class="line"></span><br><span class="line">    componentName: <span class="string">'ElCollapse'</span>,</span><br><span class="line"></span><br><span class="line">    props: &#123;</span><br><span class="line">      value: &#123;</span><br><span class="line">        type: [<span class="built_in">Array</span>, <span class="built_in">String</span>, <span class="built_in">Number</span>],</span><br><span class="line">        <span class="keyword">default</span>() &#123;</span><br><span class="line">          <span class="keyword">return</span> [];</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    data() &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        activeNames: [].concat(<span class="keyword">this</span>.value)</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    provide() &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        collapse: <span class="keyword">this</span></span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">    created() &#123;</span><br><span class="line">      <span class="keyword">this</span>.$on(<span class="string">'item-click'</span>, <span class="keyword">this</span>.handleItemClick);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ Collapse-item</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">  export default &#123;</span></span><br><span class="line"><span class="regexp">    name: 'ElCollapseItem',</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    componentName: 'ElCollapseItem',</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    inject: ['collapse'],</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ ...</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    computed: &#123;</span></span><br><span class="line"><span class="regexp">      isActive() &#123;</span></span><br><span class="line"><span class="regexp">        return this.collapse.activeNames.indexOf(this.name) &gt; -1;</span></span><br><span class="line"><span class="regexp">      &#125;,</span></span><br><span class="line"><span class="regexp">      /</span><span class="regexp">/ ...</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    methods: &#123;</span></span><br><span class="line"><span class="regexp">      /</span><span class="regexp">/ ...</span></span><br><span class="line"><span class="regexp">      handleHeaderClick() &#123;</span></span><br><span class="line"><span class="regexp">        this.dispatch('ElCollapse', 'item-click', this);</span></span><br><span class="line"><span class="regexp">        /</span><span class="regexp">/ ...</span></span><br><span class="line"><span class="regexp">      &#125;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+<p>看下一Vue官方文档中的解释，<a href="https://cn.vuejs.org/v2/api/#provide-inject" target="_blank" rel="noopener">provide / inject</a><br><a href="/blog/images/14.png"></a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过这个Collapse组件，至少可以学到三点</p>
 <ul>
-<li>加深了对$on, $emit使用的理解</li>
-<li>发现了过渡效果中，对于多个元素过渡的应用场景</li>
+<li>对于过渡动画，钩子函数的使用，以及封装</li>
+<li>对于vm的实例属性，$parent,$children,$options的应用</li>
+<li>对于祖先组件与子孙组件的数据依赖解决方案，provide/inject </li>
 </ul>
 
                 <hr>
@@ -200,14 +197,14 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/blog/2018/03/30/Collapse组件-过渡动画/" data-toggle="tooltip" data-placement="top"
-                           title="Collapse组件-过渡动画">&larr; Previous Post</a>
+                        <a href="/blog/2018/04/12/Switch组件/" data-toggle="tooltip" data-placement="top"
+                           title="Switch组件">&larr; Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/blog/2018/03/27/可自适应文本高度的输入框/" data-toggle="tooltip" data-placement="top"
-                           title="可自适应文本高度的输入框">Next Post &rarr;</a>
+                        <a href="/blog/2018/04/02/Collapse组件-自定义组件间通信/" data-toggle="tooltip" data-placement="top"
+                           title="Collapse组件-自定义组件间通信">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -223,7 +220,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#最终实现的效果"><span class="toc-text">最终实现的效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展"><span class="toc-text">扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#对组件间的通信的理解"><span class="toc-text">对组件间的通信的理解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Vue过渡效果中，key属性的应用"><span class="toc-text">Vue过渡效果中，key属性的应用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#最终实现效果"><span class="toc-text">最终实现效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#provide-inject"><span class="toc-text">provide / inject</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
                 </div>
             </div>
         </div>
